@@ -1,0 +1,392 @@
+{
+	"name": "blogger-studio",
+	"displayName": "Blogger Studio",
+	"description": "Write, publish, and modify blog posts and pages directly from VS Code to Blogger.com",
+	"icon": "images/icon.png",
+	"version": "1.0.0",
+	"publisher": "viacheslav-kladov",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/vkl/blogger-vs-extension.git"
+	},
+	"engines": {
+		"vscode": "^1.145.2"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"blogger",
+		"blog",
+		"publish",
+		"google"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "blogger",
+					"title": "Blogger",
+					"icon": "images/blogger.svg"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "blogger.authenticate",
+				"title": "Authenticate with Blogger",
+				"category": "Blogger",
+				"icon": "$(key)"
+			},
+			{
+				"command": "blogger.getDriveFolders",
+				"title": "Get Google Drive Folders",
+				"category": "Blogger",
+				"icon": "$(folder)"
+			},
+			{
+				"command": "blogger.listFolderContent",
+				"title": "List Google Drive Folder Content",
+				"category": "Blogger",
+				"icon": "$(list-tree)"
+			},
+			{
+				"command": "blogger.selectBlog",
+				"title": "Select Blog",
+				"category": "Blogger",
+				"icon": "$(library)"
+			},
+			{
+				"command": "bloggerPosts.refresh",
+				"title": "Refresh",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "bloggerPosts.new",
+				"title": "Add Post",
+				"icon": "$(plus)"
+			},
+			{
+				"command": "bloggerPages.refresh",
+				"title": "Refresh Pages",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "bloggerPages.new",
+				"title": "Add Page",
+				"icon": "$(plus)"
+			},
+			{
+				"command": "bloggerBlogs.refresh",
+				"title": "Refresh Blogs",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "bloggerBlogs.select",
+				"title": "Select Blog",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.open",
+				"title": "Open",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.modifyPost",
+				"title": "Modify",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.modifyPage",
+				"title": "Modify",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.publish",
+				"title": "Publish",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.saveDraft",
+				"title": "Save",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.editPostLabels",
+				"title": "Edit Labels",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.unpublish",
+				"title": "Unpublish",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.preview",
+				"title": "Preview",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerItem.delete",
+				"title": "Delete",
+				"category": "Blogger"
+			},
+			{
+				"command": "bloggerPosts.openPost",
+				"title": "Open Post",
+				"icon": "$(go-to-file)"
+			},
+			{
+				"command": "bloggerPosts.publishPost",
+				"title": "Publish Post",
+				"icon": "$(cloud-upload)"
+			},
+			{
+				"command": "bloggerPosts.previewPost",
+				"title": "Preview Post",
+				"icon": "$(preview)"
+			},
+			{
+				"command": "bloggerPosts.viewOnBlogger",
+				"title": "View on Blogger",
+				"icon": "$(globe)"
+			},
+			{
+				"command": "bloggerPosts.deleteMetadata",
+				"title": "Delete Metadata",
+				"icon": "$(trash)"
+			},
+			{
+				"command": "bloggerPosts.showInfo",
+				"title": "Show Info",
+				"icon": "$(info)"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "bloggerItem.modifyPage",
+					"when": "false"
+				},
+				{
+					"command": "bloggerItem.modifyPost",
+					"when": "false"
+				},
+				{
+					"command": "bloggerItem.publish",
+					"when": "false"
+				},
+				{
+					"command": "bloggerItem.unpublish",
+					"when": "false"
+				},
+				{
+					"command": "bloggerItem.open",
+					"when": "false"
+				},
+				{
+					"command": "bloggerItem.preview",
+					"when": "false"
+				},
+				{
+					"command": "bloggerItem.saveDraft",
+					"when": "false"
+				},
+				{
+					"command": "bloggerItem.delete",
+					"when": "false"
+				},
+				{
+					"command": "bloggerItem.editPostLabels",
+					"when": "false"
+				},
+				{
+					"command": "bloggerBlogs.select",
+					"when": "false"
+				}
+			],
+			"view/title": [
+				{
+					"command": "bloggerPosts.refresh",
+					"when": "view == blogger.posts",
+					"group": "navigation"
+				},
+				{
+					"command": "bloggerPosts.new",
+					"when": "view == blogger.posts",
+					"group": "navigation"
+				},
+				{
+					"command": "bloggerPages.refresh",
+					"when": "view == blogger.pages",
+					"group": "navigation"
+				},
+				{
+					"command": "bloggerPages.new",
+					"when": "view == blogger.pages",
+					"group": "navigation"
+				},
+				{
+					"command": "bloggerBlogs.refresh",
+					"when": "view == blogger.blogs",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "bloggerItem.delete",
+					"when": "(view == blogger.pages && (viewItem == bloggerPage_draft || viewItem == bloggerPage_localDraft || viewItem == bloggerPage_localPublished)) || (view == blogger.posts && (viewItem == bloggerPost_draft || viewItem == bloggerPost_localDraft || viewItem == bloggerPost_localPublished))",
+					"group": "navigation@3"
+				},
+				{
+					"command": "bloggerItem.preview",
+					"when": "(view == blogger.pages && viewItem == bloggerPage_published) || (view == blogger.posts && viewItem == bloggerPost_published)",
+					"group": "navigation@1"
+				},
+				{
+					"command": "bloggerItem.saveDraft",
+					"when": "(view == blogger.pages && (viewItem == bloggerPage_localDraft || viewItem == bloggerPage_localPublished)) || (view == blogger.posts && (viewItem == bloggerPost_localDraft || viewItem == bloggerPost_localPublished))",
+					"group": "navigation@2"
+				},
+				{
+					"command": "bloggerItem.editPostLabels",
+					"when": "view == blogger.posts && (viewItem == bloggerPost_published || viewItem == bloggerPost_draft || viewItem == bloggerPost_localDraft || viewItem == bloggerPost_localPublished)",
+					"group": "navigation@2"
+				},
+				{
+					"command": "bloggerBlogs.select",
+					"when": "view == blogger.blogs && viewItem == bloggerBlog",
+					"group": "navigation"
+				},
+				{
+					"command": "bloggerItem.open",
+					"when": "(view == blogger.pages && viewItem == bloggerPage_published) || (view == blogger.blogs && viewItem == bloggerBlog) || (view == blogger.posts && viewItem == bloggerPost_published)",
+					"group": "navigation@2"
+				},
+				{
+					"command": "bloggerItem.modifyPage",
+					"when": "view == blogger.pages && (viewItem == bloggerPage_published || viewItem == bloggerPage_draft)",
+					"group": "navigation@2"
+				},
+				{
+					"command": "bloggerItem.modifyPost",
+					"when": "view == blogger.posts && (viewItem == bloggerPost_published || viewItem == bloggerPost_draft || viewItem == bloggerPost_localDraft)",
+					"group": "navigation@2"
+				},
+				{
+					"command": "bloggerItem.publish",
+					"when": "(view == blogger.pages && (viewItem == bloggerPage_draft || viewItem == bloggerPage_localDraft)) || (view == blogger.posts && (viewItem == bloggerPost_draft || viewItem == bloggerPost_localDraft))",
+					"group": "navigation@2"
+				},
+				{
+					"command": "bloggerItem.unpublish",
+					"when": "(view == blogger.pages && viewItem == bloggerPage_published) || (view == blogger.posts && viewItem == bloggerPost_published)",
+					"group": "navigation@2"
+				}
+			]
+		},
+		"views": {
+			"blogger": [
+				{
+				"id": "blogger.blogs",
+				"name": "Blogs",
+				"icon": "images/blogger.svg",
+				"type": "tree"
+			},
+			{
+				"id": "blogger.posts",
+					"name": "Posts",
+					"icon": "images/blogger.svg",
+					"type": "tree"
+				},
+				{
+					"id": "blogger.pages",
+					"name": "Pages",
+					"icon": "images/blogger.svg",
+					"type": "tree"
+				},
+				{
+					"id": "blogger.info",
+					"name": "Info",
+					"icon": "images/blogger.svg",
+					"type": "tree"
+				}
+			]
+		},
+		"configuration": {
+			"title": "Blogger Publisher",
+			"properties": {
+				"blogger.clientId": {
+					"type": "string",
+					"default": "",
+					"description": "Google OAuth Client ID for Blogger API"
+				},
+				"blogger.clientSecret": {
+					"type": "string",
+					"default": "",
+					"description": "Google OAuth Client Secret for Blogger API"
+				},
+				"blogger.selectedBlogId": {
+					"type": "string",
+					"default": "",
+					"description": "Currently selected blog ID"
+				},
+				"blogger.maxResults": {
+					"type": "integer",
+					"default": 50,
+					"minimum": 1,
+					"maximum": 500,
+					"description": "Maximum Blogger posts or pages returned by each list request (the Blogger Pages API caps this at 50)"
+				},
+				"blogger.defaultLabels": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [],
+					"description": "Default labels/tags for new posts"
+				},
+				"blogger.googleDriveImageFolder": {
+					"type": "string",
+					"default": "",
+					"description": "Custom folder path in Google Drive for uploading images (e.g., 'Blog Images' or 'Blog Images/2025'). Leave empty to use root folder."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node out/test/simple-test.js",
+		"verify": "npx @vscode/vsce login",
+		"package": "npx @vscode/vsce package",
+		"publish": "npx @vscode/vsce publish"
+	},
+	"devDependencies": {
+		"@types/marked": "^6.0.0",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "18.x",
+		"@types/vscode": "1.145.0",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"@vscode/test-electron": "^2.3.8",
+		"@vscode/vsce": "^3.6.0",
+		"eslint": "^8.28.0",
+		"glob": "^10.5.0",
+		"mocha": "^10.2.0",
+		"typescript": "^4.9.4"
+	},
+	"dependencies": {
+		"googleapis": "^109.0.0",
+		"marked": "^4.3.0"
+	},
+	"__metadata": {
+		"installedTimestamp": 1794024815633,
+		"targetPlatform": "undefined",
+		"size": 127658558
+	}
+}
