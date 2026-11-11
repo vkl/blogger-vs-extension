@@ -3,7 +3,7 @@
 	"displayName": "Blogger Studio",
 	"description": "Write, publish, and modify blog posts and pages directly from VS Code to Blogger.com",
 	"icon": "images/icon.png",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "viacheslav-kladov",
 	"repository": {
 		"type": "git",
